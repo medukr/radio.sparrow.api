@@ -5,16 +5,18 @@
  * Time: 18:04
  */
 
-namespace vendor;
-
-
 class Config
 {
-    private static $_config;
+    private $config;
     private static $_instance;
 
-    public function __construct(){}
-    public function __clone(){}
+    public function __construct(){
+        $this->loadConfig();
+    }
+
+    public function __clone(){
+        return self::getInstance();
+    }
 
     public static function getInstance(){
         if (self::$_instance == null) {
@@ -29,6 +31,6 @@ class Config
     }
 
     public function getConfig(){
-
+        return $this->config;
     }
 }

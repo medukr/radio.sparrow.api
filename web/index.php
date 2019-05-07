@@ -2,7 +2,9 @@
 try{
     require_once '../vendor/lib/init.php';
 
-    \vendor\App::run($_SERVER['REQUEST_URI']);
+    App::init();
+
+
 
 } catch (Exception $e){
     echo '<b>Exception Message: </b>' . $e->getMessage() .PHP_EOL;

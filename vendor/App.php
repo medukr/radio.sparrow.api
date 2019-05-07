@@ -4,20 +4,46 @@
  * Date: 06.05.19
  * Time: 17:03
  */
-namespace vendor;
 
 class App
 {
+    public static $app;
     private $router;
+    private $config;
 
+    public function __construct(){}
+    public function __clone(){}
 
-    public function __construct()
+    static function init()
     {
+        if (self::$app == null){
 
+            self::$app = new self;
+
+            self::$app->config = Config::getInstance();
+            self::$app->router = new Router($_SERVER['REQUEST_URI']);
+
+            self::$app->run();
+        }
     }
 
-    static function run($uri)
-    {
-        self::$router = new Router($uri);
+
+    private function run(){
+        $this->router->run();
     }
+
+    public function getRouter(){
+        return $this->router;
+    }
+
+    public function getConfig(){
+        return $this->config;
+    }
+
+
+
+
+
+
+
 }

@@ -11,12 +11,20 @@ include 'functions.php';
 const DS = DIRECTORY_SEPARATOR;
 define('ROOT', dirname(__FILE__, 3));
 
-//require_once(ROOT . DS . 'config' . DS . 'config.php');
 
 spl_autoload_register(function ($class_name){
+    $app_config = require ROOT . DS . 'config' . DS . 'app.php';
+
     $pars_class_name = explode('\\', $class_name);
 
-    $file_path = ROOT . DS;
+//    $namespace_path = $app_config['namespaces_path']['vendor'];
+//
+//    if (count($pars_class_name) < 2){
+//        $namespace_path = 'vendor';
+//    }
+
+    $file_path = ROOT . DS . 'vendor' . DS;
+
 
     for ($i = 0; $i < count($pars_class_name); $i++){
         $file_path .= $pars_class_name[$i];
