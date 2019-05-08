@@ -1,8 +1,8 @@
 <?php
 return [
     'namespaces_path' => [
-        'vendor' => 'vendor',
-        'controller' => 'controller',
-        'model' => 'model'
+        'app' => 'vendor',
+        'controller' => 'controllers',
+        'model' => 'models',
     ]
 ];

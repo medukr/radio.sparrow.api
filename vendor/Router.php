@@ -5,6 +5,7 @@
  * Time: 17:59
  */
 
+namespace app;
 
 class Router
 {
@@ -78,8 +79,10 @@ class Router
 
     private function setDefaults()
     {
-        $this->controller = '';
-        $this->action = '';
+        $this->controller = App::$app->getConfig()->getWebConfig()['default']['controller'];
+        $this->action = App::$app->getConfig()->getWebConfig()['default']['action'];;
+        $this->arguments = [];
+        $this->otherArguments = [];
     }
 
     /**
@@ -109,7 +112,7 @@ class Router
     /**
      * @return mixed
      */
-    public function getArguments()
+    public function getParams()
     {
         return $this->arguments;
     }
@@ -117,7 +120,7 @@ class Router
     /**
      * @return mixed
      */
-    public function getOtherArguments()
+    public function getOtherParams()
     {
         return $this->otherArguments;
     }
