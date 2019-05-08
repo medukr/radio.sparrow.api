@@ -23,8 +23,10 @@ spl_autoload_register(/**
     //путь к папке root
     $file_path = ROOT . DS;
 
+    //пример входящих данных => неободимое превращение
     //controller\TestController => controllers/TestController
-    //\App => vendor/App
+    //app\App => vendor/App
+    //helpers\Html => vendor/helpers/Html
 
     //определяем имя класса
     $className = end($pars_class_name);

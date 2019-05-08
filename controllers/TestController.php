@@ -7,11 +7,17 @@
 
 namespace controller;
 
+use app\App;
 use app\Controller;
 
 class TestController extends Controller
 {
     public function testAction(){
-        $this->render(next($this->params));
+
+        $this->render(__METHOD__);
+    }
+
+    public function indexAction(){
+        echo __METHOD__;
     }
 }

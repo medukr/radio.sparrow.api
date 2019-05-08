@@ -32,30 +32,32 @@ class App
     }
 
 
-    private function run(){
+    private function run()
+    {
         $this->router->run();
+
+//      self::$app->controller = new Controller();
 
         $controller_class = 'controller'
             . '\\'
-            . ucfirst($this->router->getController())
+            . ucfirst(App::$app->getRouter()->getController())
             . 'Controller';
 
-        $controller_method =  $this->router->getAction()
-            . 'Action';
+        $action = App::$app->getRouter()->getAction() . 'Action';
 
 
+        if (class_exists($controller_class)) {
 
-        if (class_exists($controller_class)){
-            $controller_object = new $controller_class;
-            if (method_exists($controller_object, $controller_method)){
-                $controller_object->$controller_method();
+            self::$app->controller = new $controller_class;
+
+            if (self::$app->controller instanceof Controller){
+                if (method_exists(self::$app->controller, $action)) {
+                    self::$app->controller->$action();
+                }
             }
+
+
         }
-
-
-
-
-
 
     }
 
