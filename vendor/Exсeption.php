@@ -7,7 +7,6 @@
 
 namespace app;
 
-
 use Throwable;
 
 class Exсeption extends \Exception
