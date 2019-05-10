@@ -26,8 +26,10 @@ class Controller
 
     }
 
-    public function render($arg){
-        echo $arg;
+    public function render(...$arg){
+        foreach ($arg as $item){
+            debug ($item);
+        }
     }
 
     public function getController()

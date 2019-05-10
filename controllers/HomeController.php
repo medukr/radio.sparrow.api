@@ -12,7 +12,9 @@ use app\Controller;
 
 class HomeController extends Controller
 {
-    public function indexAction(){
-       echo __METHOD__;
+
+    function indexAction(){
+        echo __METHOD__;
     }
+
 }

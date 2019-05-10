@@ -14,7 +14,7 @@ class TestController extends Controller
 {
     public function testAction(){
 
-        $this->render(__METHOD__);
+        $this->render(__METHOD__, $this->params);
     }
 
     public function indexAction(){
