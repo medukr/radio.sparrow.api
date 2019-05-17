@@ -8,22 +8,12 @@
 namespace model;
 
 
-use app\App;
-use app\Model;
 
-class StationsModel extends Model
+class StationsModel extends MainModel
 {
     private $_base = 'stations';
 
-    public function apiKey(){
-        return App::$app->getConfig()->getWebConfig()['api_key'];
-    }
-
-    public function apiServer(){
-        return App::$app->getConfig()->getWebConfig()['api_server'];
-    }
-
-    public function loadPopular($page, $per_page){
+    public function getPopular($page, $per_page){
         /*
         if ( разница во времени с последней загрузки больше установленной){
             // 1.загружай обновленную инфу
@@ -36,16 +26,59 @@ class StationsModel extends Model
         */
         //Так вот а страницы как проверять?
 
-        debug($this->service);
+//        debug($this->service);
+//
+//        $request = $this->_base .  '/popular';
+//
+//        return $this->getResponse($request, $page, $per_page);
 
-        $request = $this->_base .  '/popular';
-
-        return $this->getResponse($request, $page, $per_page);
+        return file_get_contents($this->storagePath. '/' .'popular.txt');
     }
 
-    public function loadStations($page, $per_page){
-        $request = $this->_base;
-        return $this->getResponse($request, $page, $per_page);
+    public function getStations($page, $per_page){
+//        $request = $this->_base;
+//        return $this->getResponse($request, $page, $per_page);
 
+        return file_get_contents($this->storagePath. '/' .'stations.txt');
+    }
+
+    public function getSimilar($page, $per_page){
+        return file_get_contents($this->storagePath. '/' .'similar_stations.txt');
+    }
+
+    public function getRecent($page, $per_page){
+        return file_get_contents($this->storagePath. '/' .'recent.txt');
+    }
+
+    public function getSpecific($id){
+
+        $data = file_get_contents($this->storagePath. '/' . 'recent.txt');
+
+        $arr_data = json_decode($data);
+        $res = array_filter($arr_data, function ($el, $key) use ($id){
+            return $el->id == $id;
+        },ARRAY_FILTER_USE_BOTH);
+
+        if (empty($res)){
+            $data = file_get_contents($this->storagePath. '/' . 'popular.txt');
+            $arr_data = json_decode($data);
+            $res = array_filter($arr_data, function ($el, $key) use ($id){
+                return $el->id == $id;
+            },ARRAY_FILTER_USE_BOTH);
+        }
+
+        $res = array_values($res);
+
+        return json_encode($res[0]);
+    }
+
+    public function getSongHistory($id){
+        $data = file_get_contents($this->storagePath. '/' . 'song_history.txt');
+
+        $data = json_decode($data);
+
+        shuffle($data);
+
+        return json_encode($data);
     }
 }

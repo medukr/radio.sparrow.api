@@ -11,15 +11,11 @@ namespace model;
 use app\App;
 use app\Model;
 
-class CountriesModel extends Model
+class CountriesModel extends MainModel
 {
     private $_base = 'countries';
 
-    public function apiKey(){
-        return App::$app->getConfig()->getWebConfig()['api_key'];
-    }
-
-    public function apiServer(){
-        return App::$app->getConfig()->getWebConfig()['api_server'];
+    public function getCountries($page, $per_page){
+        return file_get_contents($this->storagePath. '/' .'countries.txt');
     }
 }

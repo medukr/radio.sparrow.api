@@ -13,6 +13,7 @@ abstract class Model
 
     protected $service;
 
+
     public function __construct()
     {
         $this->service = parse_ini_file(App::$app->getRouter()->getRootDir() . '/db/service.ini', true);

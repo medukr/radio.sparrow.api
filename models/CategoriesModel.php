@@ -8,20 +8,38 @@
 namespace model;
 
 
-use app\App;
-use app\Model;
 
-class CategoriesModel extends Model
+class CategoriesModel extends MainModel
 {
 
     private $_base = 'categories';
 
-
-    public function apiKey(){
-        return App::$app->getConfig()->getWebConfig()['api_key'];
+    public function getAll(){
+        return file_get_contents($this->storagePath. '/' .'all_categories.txt');
     }
 
-    public function apiServer(){
-        return App::$app->getConfig()->getWebConfig()['api_server'];
+
+    public function getPrimary(){
+        return file_get_contents($this->storagePath. '/' .'primary_categories.txt');
     }
+
+    public function getCategoryStations($id){
+
+
+        $data = file_get_contents($this->storagePath. '/' . 'recent.txt');
+
+        $arr_data = json_decode($data);
+
+
+        $res = array_filter($arr_data,
+            function ($el, $key) use ($id){
+            return $el->categories[0]->id == $id;
+        },ARRAY_FILTER_USE_BOTH);
+
+        $res = array_values($res);
+
+
+        return json_encode($res);
+    }
+
 }

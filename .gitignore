@@ -1,2 +1,6 @@
 # phpstorm project files
 .idea
+
+
+#store cache
+db/storage/**
