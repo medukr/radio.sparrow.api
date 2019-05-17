@@ -14,7 +14,7 @@ class HomeController extends Controller
 {
 
     function indexAction(){
-        echo __METHOD__;
+        echo 'Hello, this is RadioSparrow API';
     }
 
 }

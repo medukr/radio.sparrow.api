@@ -9,6 +9,8 @@ namespace app;
 
 class Router
 {
+    private $root_dir;
+
     private $uri;
     private $route;
 
@@ -19,6 +21,7 @@ class Router
 
     public function __construct($uri)
     {
+        $this->root_dir = dirname(__FILE__, 2);
         $this->uri = strtolower(urldecode(trim($uri, '/')));
     }
 
@@ -123,6 +126,14 @@ class Router
     public function getOtherParams()
     {
         return $this->otherArguments;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRootDir()
+    {
+        return $this->root_dir;
     }
 
 }
