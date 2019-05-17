@@ -25,21 +25,42 @@ class CategoriesModel extends MainModel
 
     public function getCategoryStations($id){
 
+        switch ($id) {
+            case 5: $fileName = 'pop_stations.txt';
+            break;
+            case 4: $fileName = 'speech_stations.txt';
+            break;
+            case 3: $fileName = 'dance_stations.txt';
+            break;
+            case 14: $fileName = 'electronic_stations.txt';
+            break;
+            case 40: $fileName = 'decades_stations.txt';
+            break;
+            default: $fileName = false;
+        }
 
-        $data = file_get_contents($this->storagePath. '/' . 'recent.txt');
 
-        $arr_data = json_decode($data);
+        if ($fileName !== false) {
+
+            return file_get_contents($this->storagePath. '/' . $fileName);
+
+        } else {
+
+            $data = file_get_contents($this->storagePath. '/' . 'recent.txt');
+
+            $arr_data = json_decode($data);
 
 
-        $res = array_filter($arr_data,
-            function ($el, $key) use ($id){
-            return $el->categories[0]->id == $id;
-        },ARRAY_FILTER_USE_BOTH);
+            $res = array_filter($arr_data,
+                function ($el) use ($id){
+                    return $el->categories[0]->id == $id;
+                },ARRAY_FILTER_USE_BOTH);
 
-        $res = array_values($res);
+            $res = array_values($res);
 
+            return json_encode($res);
+        }
 
-        return json_encode($res);
     }
 
 }
