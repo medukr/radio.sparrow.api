@@ -33,4 +33,16 @@ class MainController extends Controller
         );
 
     }
+
+    public function validateInt($int){
+
+        $number = (int) htmlentities(trim($int), ENT_QUOTES, 'utf-8', false);
+
+        debug($int, 1);
+        debug((string)$number, 1);
+        debug($int == $number, 1);
+
+        if ($number === $int) return $number;
+        return false;
+    }
 }

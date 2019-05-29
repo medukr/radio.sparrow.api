@@ -8,6 +8,7 @@
 namespace controller;
 
 
+use app\exception\HttpSparrowException;
 use model\CategoriesModel;
 
 class CategoriesController extends MainController
@@ -30,13 +31,30 @@ class CategoriesController extends MainController
     }
 
     public function stationsAction(){
-        $categories = $this->getModel();
+        if (isset($this->params['id'])) {
+            $categories = $this->getModel();
 
-        $categoryId = $this->params['id'];
-        $page = $this->params['page'];
-        $per_page = $this->params['per_page'];
+            $categoryId = $this->validateInt($this->params['id']);
 
-        echo $categories->getCategoryStations($categoryId, $page, $per_page);
+            $page = isset($this->params['page'])
+                ? $this->validateInt($this->params['page'])
+                : 1;
+            $per_page = isset($this->params['per_page'])
+                ? $this->validateInt($this->params['per_page'])
+                : 20;
+
+
+            if (!!$categoryId || !!$page || !!$per_page) {
+                echo $categories->getCategoryStations($categoryId, $page, $per_page);
+            } else {
+                throw new HttpSparrowException('Invalid parameter', 404);
+            }
+
+
+        } else {
+            throw new HttpSparrowException('Missing id parameter', 404);
+        }
+
     }
 
 

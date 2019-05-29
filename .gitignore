@@ -4,3 +4,6 @@
 
 #store cache
 db/storage/**
+
+#log files
+logs/**
