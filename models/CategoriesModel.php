@@ -23,7 +23,7 @@ class CategoriesModel extends MainModel
         return file_get_contents($this->storagePath. '/' .'primary_categories.txt');
     }
 
-    public function getCategoryStations($id){
+    public function getCategoryStations($id, $page = 1, $per_page = 20){
 
         switch ($id) {
             case 5: $fileName = 'pop_stations.txt';
@@ -42,7 +42,11 @@ class CategoriesModel extends MainModel
 
         if ($fileName !== false) {
 
-            return file_get_contents($this->storagePath. '/' . $fileName);
+            $content = json_decode(file_get_contents($this->storagePath. '/' . $fileName));
+
+            $data = array_slice($content, 0, $per_page);
+
+            return json_encode($data);
 
         } else {
 

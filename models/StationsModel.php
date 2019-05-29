@@ -9,6 +9,8 @@ namespace model;
 
 
 
+use http\Exception\BadUrlException;
+
 class StationsModel extends MainModel
 {
     private $_base = 'stations';
@@ -38,16 +40,21 @@ class StationsModel extends MainModel
     public function getStations($page, $per_page){
 //        $request = $this->_base;
 //        return $this->getResponse($request, $page, $per_page);
-
         return file_get_contents($this->storagePath. '/' .'stations.txt');
+
     }
 
     public function getSimilar($page, $per_page){
         return file_get_contents($this->storagePath. '/' .'similar_stations.txt');
     }
 
-    public function getRecent($page, $per_page){
-        return file_get_contents($this->storagePath. '/' .'recent.txt');
+    public function getRecent($page, $per_page = 20){
+
+        $content = json_decode(file_get_contents($this->storagePath. '/' .'recent.txt'));
+
+        $data = array_slice($content, 0, $per_page);
+
+        return json_encode($data);
     }
 
     public function getSpecific($id){
@@ -69,7 +76,7 @@ class StationsModel extends MainModel
 
         $res = array_values($res);
 
-        return json_encode($res[0]);
+        return isset($res[0]) ? json_encode($res[0]) : json_encode(null);
     }
 
     public function getSongHistory($id){
@@ -80,5 +87,23 @@ class StationsModel extends MainModel
         shuffle($data);
 
         return json_encode($data);
+    }
+
+    public function getSearch($query){
+
+        $query = $this->validateString($query);
+
+        if ($query) {
+            //Сейчас просто заглушка
+            $data =  file_get_contents($this->storagePath. '/' . 'popular.txt');
+
+            $data = json_decode($data);
+
+            shuffle($data);
+
+            return  json_encode($data);
+        }
+
+        return [];
     }
 }

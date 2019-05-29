@@ -1,0 +1,189 @@
+[2019-05-29 16:23:36] 
+Exception Message: Method controller\CategoriesController\stationsAction() is Not Found
+In File: /var/www/radio.sparrow.backend.loc/vendor/App.php(line: 65)
+Trace: 
+#0 /var/www/radio.sparrow.backend.loc/vendor/App.php(35): app\App->run()
+#1 /var/www/radio.sparrow.backend.loc/web/index.php(4): app\App::init()
+#2 {main}
+
+
+[2019-05-29 16:27:16] 
+Exception Message: Error access token
+In File: /var/www/radio.sparrow.backend.loc/controllers/MainController.php(line: 22)
+Trace: 
+#0 /var/www/radio.sparrow.backend.loc/vendor/App.php(58): controller\MainController->__construct()
+#1 /var/www/radio.sparrow.backend.loc/vendor/App.php(35): app\App->run()
+#2 /var/www/radio.sparrow.backend.loc/web/index.php(4): app\App::init()
+#3 {main}
+
+
+[2019-05-29 16:28:01] 
+Exception Message: Error access token
+In File: /var/www/radio.sparrow.backend.loc/controllers/MainController.php(line: 22)
+Trace: 
+#0 /var/www/radio.sparrow.backend.loc/vendor/App.php(58): controller\MainController->__construct()
+#1 /var/www/radio.sparrow.backend.loc/vendor/App.php(35): app\App->run()
+#2 /var/www/radio.sparrow.backend.loc/web/index.php(4): app\App::init()
+#3 {main}
+
+
+[2019-05-29 16:28:02] 
+Exception Message: Error access token
+In File: /var/www/radio.sparrow.backend.loc/controllers/MainController.php(line: 22)
+Trace: 
+#0 /var/www/radio.sparrow.backend.loc/vendor/App.php(58): controller\MainController->__construct()
+#1 /var/www/radio.sparrow.backend.loc/vendor/App.php(35): app\App->run()
+#2 /var/www/radio.sparrow.backend.loc/web/index.php(4): app\App::init()
+#3 {main}
+
+
+[2019-05-29 16:28:27] 
+Exception Message: Error access token
+In File: /var/www/radio.sparrow.backend.loc/controllers/MainController.php(line: 22)
+Trace: 
+#0 /var/www/radio.sparrow.backend.loc/vendor/App.php(58): controller\MainController->__construct()
+#1 /var/www/radio.sparrow.backend.loc/vendor/App.php(35): app\App->run()
+#2 /var/www/radio.sparrow.backend.loc/web/index.php(4): app\App::init()
+#3 {main}
+
+
+[2019-05-29 16:28:28] 
+Exception Message: Error access token
+In File: /var/www/radio.sparrow.backend.loc/controllers/MainController.php(line: 22)
+Trace: 
+#0 /var/www/radio.sparrow.backend.loc/vendor/App.php(58): controller\MainController->__construct()
+#1 /var/www/radio.sparrow.backend.loc/vendor/App.php(35): app\App->run()
+#2 /var/www/radio.sparrow.backend.loc/web/index.php(4): app\App::init()
+#3 {main}
+
+
+[2019-05-29 16:28:28] 
+Exception Message: Error access token
+In File: /var/www/radio.sparrow.backend.loc/controllers/MainController.php(line: 22)
+Trace: 
+#0 /var/www/radio.sparrow.backend.loc/vendor/App.php(58): controller\MainController->__construct()
+#1 /var/www/radio.sparrow.backend.loc/vendor/App.php(35): app\App->run()
+#2 /var/www/radio.sparrow.backend.loc/web/index.php(4): app\App::init()
+#3 {main}
+
+
+[2019-05-29 16:28:28] 
+Exception Message: Error access token
+In File: /var/www/radio.sparrow.backend.loc/controllers/MainController.php(line: 22)
+Trace: 
+#0 /var/www/radio.sparrow.backend.loc/vendor/App.php(58): controller\MainController->__construct()
+#1 /var/www/radio.sparrow.backend.loc/vendor/App.php(35): app\App->run()
+#2 /var/www/radio.sparrow.backend.loc/web/index.php(4): app\App::init()
+#3 {main}
+
+
+[2019-05-29 16:28:35] 
+Exception Message: Error access token
+In File: /var/www/radio.sparrow.backend.loc/controllers/MainController.php(line: 22)
+Trace: 
+#0 /var/www/radio.sparrow.backend.loc/vendor/App.php(58): controller\MainController->__construct()
+#1 /var/www/radio.sparrow.backend.loc/vendor/App.php(35): app\App->run()
+#2 /var/www/radio.sparrow.backend.loc/web/index.php(4): app\App::init()
+#3 {main}
+
+
+[2019-05-29 16:28:36] 
+Exception Message: Error access token
+In File: /var/www/radio.sparrow.backend.loc/controllers/MainController.php(line: 22)
+Trace: 
+#0 /var/www/radio.sparrow.backend.loc/vendor/App.php(58): controller\MainController->__construct()
+#1 /var/www/radio.sparrow.backend.loc/vendor/App.php(35): app\App->run()
+#2 /var/www/radio.sparrow.backend.loc/web/index.php(4): app\App::init()
+#3 {main}
+
+
+[2019-05-29 16:28:36] 
+Exception Message: Error access token
+In File: /var/www/radio.sparrow.backend.loc/controllers/MainController.php(line: 22)
+Trace: 
+#0 /var/www/radio.sparrow.backend.loc/vendor/App.php(58): controller\MainController->__construct()
+#1 /var/www/radio.sparrow.backend.loc/vendor/App.php(35): app\App->run()
+#2 /var/www/radio.sparrow.backend.loc/web/index.php(4): app\App::init()
+#3 {main}
+
+
+[2019-05-29 16:28:55] 
+Exception Message: Error access token
+In File: /var/www/radio.sparrow.backend.loc/controllers/MainController.php(line: 22)
+Trace: 
+#0 /var/www/radio.sparrow.backend.loc/vendor/App.php(58): controller\MainController->__construct()
+#1 /var/www/radio.sparrow.backend.loc/vendor/App.php(35): app\App->run()
+#2 /var/www/radio.sparrow.backend.loc/web/index.php(4): app\App::init()
+#3 {main}
+
+
+[2019-05-29 16:28:55] 
+Exception Message: Error access token
+In File: /var/www/radio.sparrow.backend.loc/controllers/MainController.php(line: 22)
+Trace: 
+#0 /var/www/radio.sparrow.backend.loc/vendor/App.php(58): controller\MainController->__construct()
+#1 /var/www/radio.sparrow.backend.loc/vendor/App.php(35): app\App->run()
+#2 /var/www/radio.sparrow.backend.loc/web/index.php(4): app\App::init()
+#3 {main}
+
+
+[2019-05-29 16:29:03] 
+Exception Message: Error access token
+In File: /var/www/radio.sparrow.backend.loc/controllers/MainController.php(line: 22)
+Trace: 
+#0 /var/www/radio.sparrow.backend.loc/vendor/App.php(58): controller\MainController->__construct()
+#1 /var/www/radio.sparrow.backend.loc/vendor/App.php(35): app\App->run()
+#2 /var/www/radio.sparrow.backend.loc/web/index.php(4): app\App::init()
+#3 {main}
+
+
+[2019-05-29 16:29:04] 
+Exception Message: Error access token
+In File: /var/www/radio.sparrow.backend.loc/controllers/MainController.php(line: 22)
+Trace: 
+#0 /var/www/radio.sparrow.backend.loc/vendor/App.php(58): controller\MainController->__construct()
+#1 /var/www/radio.sparrow.backend.loc/vendor/App.php(35): app\App->run()
+#2 /var/www/radio.sparrow.backend.loc/web/index.php(4): app\App::init()
+#3 {main}
+
+
+[2019-05-29 16:29:13] 
+Exception Message: Error access token
+In File: /var/www/radio.sparrow.backend.loc/controllers/MainController.php(line: 22)
+Trace: 
+#0 /var/www/radio.sparrow.backend.loc/vendor/App.php(58): controller\MainController->__construct()
+#1 /var/www/radio.sparrow.backend.loc/vendor/App.php(35): app\App->run()
+#2 /var/www/radio.sparrow.backend.loc/web/index.php(4): app\App::init()
+#3 {main}
+
+
+[2019-05-29 16:29:13] 
+Exception Message: Error access token
+In File: /var/www/radio.sparrow.backend.loc/controllers/MainController.php(line: 22)
+Trace: 
+#0 /var/www/radio.sparrow.backend.loc/vendor/App.php(58): controller\MainController->__construct()
+#1 /var/www/radio.sparrow.backend.loc/vendor/App.php(35): app\App->run()
+#2 /var/www/radio.sparrow.backend.loc/web/index.php(4): app\App::init()
+#3 {main}
+
+
+[2019-05-29 16:29:17] 
+Exception Message: Error access token
+In File: /var/www/radio.sparrow.backend.loc/controllers/MainController.php(line: 22)
+Trace: 
+#0 /var/www/radio.sparrow.backend.loc/vendor/App.php(56): controller\MainController->__construct()
+#1 /var/www/radio.sparrow.backend.loc/vendor/App.php(35): app\App->run()
+#2 /var/www/radio.sparrow.backend.loc/web/index.php(4): app\App::init()
+#3 {main}
+
+
+[2019-05-29 16:29:17] 
+Exception Message: Error access token
+In File: /var/www/radio.sparrow.backend.loc/controllers/MainController.php(line: 22)
+Trace: 
+#0 /var/www/radio.sparrow.backend.loc/vendor/App.php(56): controller\MainController->__construct()
+#1 /var/www/radio.sparrow.backend.loc/vendor/App.php(35): app\App->run()
+#2 /var/www/radio.sparrow.backend.loc/web/index.php(4): app\App::init()
+#3 {main}
+
+

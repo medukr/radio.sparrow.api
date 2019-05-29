@@ -71,6 +71,15 @@ class StationsController extends MainController
         echo $stations->getSongHistory($station_id);
     }
 
+    public function searchAction(){
+        $stations = $this->getModel();
+
+        $query = $this->params['query'];
+
+//        sleep(2);
+        echo $stations->getSearch($query);
+    }
+
     public function getModel(){
         return new StationsModel();
     }

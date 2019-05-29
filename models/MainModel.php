@@ -10,6 +10,7 @@ namespace model;
 
 use app\App;
 use app\Model;
+use function PHPSTORM_META\type;
 
 class MainModel extends Model
 {
@@ -29,5 +30,12 @@ class MainModel extends Model
 
     public function apiServer(){
         return App::$app->getConfig()->getWebConfig()['api_server'];
+    }
+
+    public function validateString($string){
+        if (is_string($string)){
+            return htmlspecialchars(trim($string));
+        }
+        return false;
     }
 }

@@ -19,7 +19,6 @@ class CategoriesController extends MainController
         echo $categories->getAll();
     }
 
-
     public function primaryAction(){
         $categories = $this->getModel();
 
@@ -34,8 +33,10 @@ class CategoriesController extends MainController
         $categories = $this->getModel();
 
         $categoryId = $this->params['id'];
+        $page = $this->params['page'];
+        $per_page = $this->params['per_page'];
 
-        echo $categories->getCategoryStations($categoryId);
+        echo $categories->getCategoryStations($categoryId, $page, $per_page);
     }
 
 

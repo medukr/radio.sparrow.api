@@ -9,6 +9,7 @@ namespace controller;
 
 
 use app\App;
+use app\exception\HttpSparrowException;
 use app\Controller;
 
 class MainController extends Controller
@@ -18,11 +19,11 @@ class MainController extends Controller
     {
         parent::__construct();
 
-        if ($this->validateToken() === false){
-            die('error token');
-        }
+        if (!$this->validateToken()) throw new HttpSparrowException('Error access token', 405);
     }
 
+
+    //return true/false
     public function validateToken()
     {
         return (
