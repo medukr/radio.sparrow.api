@@ -12,6 +12,9 @@ class Controller
     protected $params;
     protected $controller;
     protected $action;
+    protected $view;
+    protected $layout;
+    protected $layout_name;
 
     public function __construct()
     {
@@ -24,12 +27,19 @@ class Controller
         $this->action =  App::$app->getRouter()->getAction()
             . 'Action';
 
+        $this->view = static::getViewModel();
+
+        $this->layout = false;
+        $this->layout_name = 'main';
     }
 
-    public function render(...$arg){
-        foreach ($arg as $item){
-            debug ($item);
-        }
+    public function render(string $view, array $params)
+    {
+
+        $this->view->setLayout($this->layout);
+        $this->view->setLayoutName($this->layout_name);
+
+        $this->view->render($view, $params);
     }
 
     public function getController()
@@ -43,5 +53,11 @@ class Controller
         return $this->action;
     }
 
+    private static function getViewModel(){
+
+        $path_name = strtolower(substr(substr(static::class, 11), 0, -10));
+
+        return new View($path_name);
+    }
 
 }

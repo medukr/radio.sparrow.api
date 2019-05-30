@@ -43,13 +43,13 @@ class CategoriesController extends MainController
                 ? $this->validateInt($this->params['per_page'])
                 : 20;
 
+            if ($categoryId && $page && $per_page) {
+                $result =  $categories->getCategoryStations($categoryId, $page, $per_page);
 
-            if (!!$categoryId || !!$page || !!$per_page) {
-                echo $categories->getCategoryStations($categoryId, $page, $per_page);
+                $this->render('main', ['result' => $result]);
             } else {
                 throw new HttpSparrowException('Invalid parameter', 404);
             }
-
 
         } else {
             throw new HttpSparrowException('Missing id parameter', 404);

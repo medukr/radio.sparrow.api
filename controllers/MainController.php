@@ -20,6 +20,7 @@ class MainController extends Controller
         parent::__construct();
 
         if (!$this->validateToken()) throw new HttpSparrowException('Error access token', 405);
+
     }
 
 
@@ -34,15 +35,19 @@ class MainController extends Controller
 
     }
 
+    public function validateData($string){
+
+        return htmlentities(trim($string), ENT_QUOTES, 'utf-8', false);
+
+    }
+
     public function validateInt($int){
 
-        $number = (int) htmlentities(trim($int), ENT_QUOTES, 'utf-8', false);
+//        $number = (int) htmlentities(trim($int), ENT_QUOTES, 'utf-8', false);
+//
+//        if ($number == $int) return $number;
+//        return false;
 
-        debug($int, 1);
-        debug((string)$number, 1);
-        debug($int == $number, 1);
-
-        if ($number === $int) return $number;
-        return false;
+        return is_numeric($int) ? (int)$int : false;
     }
 }
