@@ -7,53 +7,50 @@
 
 namespace controller;
 
-
 use app\exception\HttpSparrowException;
 use model\CategoriesModel;
 
 class CategoriesController extends MainController
 {
-
-    public function indexAction(){
-        $categories = $this->getModel();
-
-        echo $categories->getAll();
-    }
-
-    public function primaryAction(){
-        $categories = $this->getModel();
-
-        echo $categories->getPrimary();
-    }
-
     public function getModel(){
         return new CategoriesModel();
     }
 
-    public function stationsAction(){
-        if (isset($this->params['id'])) {
-            $categories = $this->getModel();
+    public function indexAction(){
 
-            $categoryId = $this->validateInt($this->params['id']);
+        $categories = $this->getModel();
 
-            $page = isset($this->params['page'])
-                ? $this->validateInt($this->params['page'])
-                : 1;
-            $per_page = isset($this->params['per_page'])
-                ? $this->validateInt($this->params['per_page'])
-                : 20;
+        $result = $categories->getAll();
 
-            if ($categoryId && $page && $per_page) {
-                $result =  $categories->getCategoryStations($categoryId, $page, $per_page);
+        $this->render('main', compact('result'));
+    }
 
-                $this->render('main', ['result' => $result]);
-            } else {
-                throw new HttpSparrowException('Invalid parameter', 404);
-            }
+    public function primaryAction(){
 
-        } else {
-            throw new HttpSparrowException('Missing id parameter', 404);
-        }
+        $categories = $this->getModel();
+
+        $result = $categories->getPrimary();
+
+        $this->render('main', compact('result'));
+    }
+
+
+    public function stationsAction($id){
+
+        $categories = $this->getModel();
+
+        $categoryId = $this->validateInt($id);
+
+        $page = isset($this->params['page'])
+            ? $this->validateInt($this->params['page'])
+            : 1;
+        $per_page = isset($this->params['per_page'])
+            ? $this->validateInt($this->params['per_page'])
+            : 20;
+
+        $result = $categories->getCategoryStations($categoryId, $page, $per_page);
+
+        $this->render('main', ['result' => $result]);
 
     }
 

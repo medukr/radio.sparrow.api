@@ -45,6 +45,7 @@ abstract class SparrowException extends \Exception
 
     public function getLogMessage(){
         $log = '[' . date('Y-m-d H:i:s') . '] ' . PHP_EOL;
+        $log .= 'URI: ' . $_SERVER['REQUEST_URI'] . PHP_EOL;
         $log .= 'Exception Message: ' . $this->getMessage() . PHP_EOL;
         $log .= 'In File: ' . $this->getFile() . '(line: '. $this->getLine() . ')' . PHP_EOL;
         $log .= 'Trace: ' .PHP_EOL. $this->getTraceAsString();

@@ -66,7 +66,7 @@ try {
         if (file_exists($file_path)) {
             require_once($file_path);
         } else {
-            throw new \app\exception\AppSparrowException('Failed to included class:' . $class_name . ' in: ' . $file_path, '404');
+            throw new \app\exception\AppSparrowException('Failed to included class:' . $class_name . ' in: ' . $file_path, 404);
         }
     });
 

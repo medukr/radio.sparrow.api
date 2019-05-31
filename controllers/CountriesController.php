@@ -7,8 +7,6 @@
 
 namespace controller;
 
-
-
 use model\CountriesModel;
 
 class CountriesController extends MainController
@@ -17,7 +15,9 @@ class CountriesController extends MainController
     public function indexAction(){
         $countries = $this->getModel();
 
-        echo $countries->getCountries(1,20);
+        $result =  $countries->getCountries(1,20);
+
+        $this->render('main', compact('result'));
     }
 
     public function getModel(){

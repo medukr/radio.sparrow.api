@@ -8,7 +8,9 @@
 namespace app;
 
 use app\exception\AppSparrowException;
+use app\exception\HttpSparrowException;
 use app\exception\SparrowException;
+use function PHPSTORM_META\map;
 
 class App
 {
@@ -44,8 +46,6 @@ class App
     {
         $this->router->run();
 
-//      self::$app->controller = new Controller();
-
         $controller_class = 'controller'
             . '\\'
             . ucfirst(App::$app->getRouter()->getController())
@@ -57,23 +57,56 @@ class App
 
         if (self::$app->controller instanceof Controller) {
             if (method_exists(self::$app->controller, $action)) {
-                self::$app->controller->$action();
-                die;
+
+                $params = self::$app->router->getParams('get');
+                $requiredParams = $this->getRequiredMethodParameters($controller_class, $action);
+                $filteredParams = $this->filterRequiredParams($requiredParams, $params);
+
+                if (count($requiredParams) === count($filteredParams['true'])){
+
+                    $arr = array_map(function ($item) use ($filteredParams){
+                        return $filteredParams['true'][$item];
+                    }, $requiredParams);
+
+                    self::$app->controller->$action(...$arr);
+//                    die;
+                } else {
+                    throw new HttpSparrowException('Invalid '. join(', ', $filteredParams['false']).' parameter(s)', 404);
+                }
             }else {
-                throw new AppSparrowException('Method '
-                    . $controller_class
-                    .'\\'
-                    .$action
-                    .'()'
-                    .' is Not Found',404);
+                throw new AppSparrowException('Method ' . $controller_class .'\\' . $action . '()' . ' is Not Found',404);
             }
         } else {
-            throw new AppSparrowException('The controller is not instanceof app\\Controller' ,404);
+            throw new AppSparrowException('Controller ' . $controller_class . ' is not instanceof app\\Controller' ,404);
         }
 
-        throw new AppSparrowException('The controller is Not Found',404);
+//        throw new AppSparrowException('Controller ' . $controller_class . ' is Not Found',404);
 
     }
+
+    public function getRequiredMethodParameters($class, $method)
+    {
+        return array_map(function ($item) {
+            return $item->name;
+        }, (new \ReflectionMethod($class, $method))->getParameters());
+    }
+
+
+    public function filterRequiredParams($requiredParams, $params)
+    {
+
+        $filteredParams['true'] = [];
+        $filteredParams['false'] = [];
+
+        foreach ($requiredParams as $item) {
+            array_key_exists($item, $params)
+                ? $filteredParams['true'][$item] = $params[$item]
+                : $filteredParams['false'][$item] = $item;
+        }
+
+        return $filteredParams;
+    }
+
 
     public function getRouter(){
         return $this->router;

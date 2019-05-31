@@ -13,8 +13,23 @@ use app\Controller;
 class HomeController extends Controller
 {
 
+    //Этот метод вызвется по урл:
+    //  '/'
+    //  '/home'
+    //  '/home/index'
+    //такое поведение из-за установленных по-умолчанию контроллера и экшна
     function indexAction(){
-        echo 'Hello, this is RadioSparrow API';
+       $message =  'Hello, this is RadioSparrow API';
+
+       $this->render('index', compact('message'));
+    }
+
+    //Этот метод вызвется только по урл '/home/countries'
+    //по урл '/countries' произойдет попытка вызвать соответсвующий контроллер и установленный по-умолчанию экшн
+    function countriesAction(){
+        $message =  'Hello, this is countriesAction()';
+
+        $this->render('index', compact('message'));
     }
 
 }

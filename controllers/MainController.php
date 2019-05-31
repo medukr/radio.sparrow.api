@@ -9,6 +9,7 @@ namespace controller;
 
 
 use app\App;
+use app\exception\AppSparrowException;
 use app\exception\HttpSparrowException;
 use app\Controller;
 
@@ -19,7 +20,7 @@ class MainController extends Controller
     {
         parent::__construct();
 
-        if (!$this->validateToken()) throw new HttpSparrowException('Error access token', 405);
+        $this->validateToken();
 
     }
 
@@ -27,12 +28,8 @@ class MainController extends Controller
     //return true/false
     public function validateToken()
     {
-        return (
-            isset($this->params['token'])
-            &&
-            $this->params['token'] === App::$app->getConfig()->getWebConfig()['token']
-        );
-
+        if (isset($this->params['get']['token']) && $this->params['get']['token'] === App::$app->getConfig()->getWebConfig()['token']) return true;
+        else throw new HttpSparrowException('Error access token', 405);
     }
 
     public function validateData($string){
@@ -43,11 +40,8 @@ class MainController extends Controller
 
     public function validateInt($int){
 
-//        $number = (int) htmlentities(trim($int), ENT_QUOTES, 'utf-8', false);
-//
-//        if ($number == $int) return $number;
-//        return false;
+        if (is_numeric($int)) return (int)$int;
+        else throw new AppSparrowException('Parameter is not valid', 404);
 
-        return is_numeric($int) ? (int)$int : false;
     }
 }

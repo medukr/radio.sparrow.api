@@ -17,67 +17,113 @@ class StationsController extends MainController
     public function indexAction(){
         $stations  = $this->getModel();
 
-        $page = $this->params['page'];
-        $per_page = $this->params['per_page'];
+        $page = isset($this->params['page'])
+            ? $this->validateInt($this->params['page'])
+            : 1;
+        $per_page = isset($this->params['per_page'])
+            ? $this->validateInt($this->params['per_page'])
+            : 20;
 
-        echo $stations->getStations($page, $per_page);
+        $result = $stations->getStations($page, $per_page);
+
+        $this->render('main', compact('result'));
     }
 
     //Загрузка популярных станций
     public function popularAction(){
         $stations = $this->getModel();
 
-        $page = $this->params['page'];
-        $per_page = $this->params['per_page'];
+        $page = isset($this->params['page'])
+            ? $this->validateInt($this->params['page'])
+            : 1;
+        $per_page = isset($this->params['per_page'])
+            ? $this->validateInt($this->params['per_page'])
+            : 20;
 
-        echo $stations->getPopular($page, $per_page);
+        $result =  $stations->getPopular($page, $per_page);
+
+        $this->render('main', compact('result'));
     }
 
     //Загрузка похожих станций
-    public function similarAction(){
+    public function similarAction($id){
         $stations = $this->getModel();
 
-        $id = $this->params['id'];
-        $page = $this->params['page'];
-        $per_page = $this->params['per_page'];
+        $id = $this->validateInt($id);
+        $page = isset($this->params['page'])
+            ? $this->validateInt($this->params['page'])
+            : 1;
+        $per_page = isset($this->params['per_page'])
+            ? $this->validateInt($this->params['per_page'])
+            : 20;
 
-        echo $stations->getSimilar($page, $per_page);
+        $result =  $stations->getSimilar($id, $page, $per_page);
+
+        $this->render('main', compact('result'));
+
     }
 
     //Загрузка последних добаленных станций
     public function recentAction(){
+
         $stations = $this->getModel();
 
-        $page = $this->params['page'];
-        $per_page = $this->params['per_page'];
+        $page = isset($this->params['page'])
+            ? $this->validateInt($this->params['page'])
+            : 1;
+        $per_page = isset($this->params['per_page'])
+            ? $this->validateInt($this->params['per_page'])
+            : 20;
 
-        echo $stations->getRecent($page, $per_page);
+        $result =  $stations->getRecent($page, $per_page);
+
+        $this->render('main', compact('result'));
+
     }
 
 
-    public function specificAction(){
+    public function specificAction($id){
         $stations = $this->getModel();
 
-        $station_id = $this->params['id'];
+        $id = $this->validateInt($id);
 
-        echo $stations->getSpecific($station_id);
+        $result = $stations->getSpecific($id);
+
+        $this->render('main', compact('result'));
+
     }
 
-    public function song_historyAction(){
+    public function song_historyAction($id){
         $stations = $this->getModel();
 
-        $station_id = $this->params['id'];
+        $id = $this->validateInt($id);
+        $page = isset($this->params['page'])
+            ? $this->validateInt($this->params['page'])
+            : 1;
+        $per_page = isset($this->params['per_page'])
+            ? $this->validateInt($this->params['per_page'])
+            : 20;
 
-        echo $stations->getSongHistory($station_id);
+        $result = $stations->getSongHistory($id, $page, $per_page);
+
+        $this->render('main', compact('result'));
+
     }
 
-    public function searchAction(){
+    public function searchAction($query){
         $stations = $this->getModel();
 
-        $query = $this->params['query'];
+        $query = $this->validateData($query);
+        $page = isset($this->params['page'])
+            ? $this->validateInt($this->params['page'])
+            : 1;
+        $per_page = isset($this->params['per_page'])
+            ? $this->validateInt($this->params['per_page'])
+            : 20;
 
-//        sleep(2);
-        echo $stations->getSearch($query);
+        $result = $stations->getSearch($query, $page, $per_page);
+
+        $this->render('main', compact('result'));
     }
 
     public function getModel(){

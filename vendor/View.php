@@ -9,6 +9,7 @@ namespace app;
 
 
 use app\exception\AppSparrowException;
+use app\exception\DevSparrowException;
 use app\exception\HttpSparrowException;
 
 class View
@@ -32,6 +33,7 @@ class View
         $this->layout_name = 'main';
 
     }
+
 
     public function getViewPath()
     {
@@ -66,7 +68,7 @@ class View
                    include ($view_file);
                    $content = ob_get_clean();
         } else {
-            throw new AppSparrowException('View file not found in ' . $view_file, 404);
+            throw new DevSparrowException('View file not found in ' . $view_file, 404);
         }
 
 
@@ -75,7 +77,7 @@ class View
                  include ($layout_file);
                  $content = ob_get_clean();
             } else {
-                throw new AppSparrowException('Layout file not found in ' . $layout_file, 404);
+                throw new DevSparrowException('Layout file not found in ' . $layout_file, 404);
             }
         }
 

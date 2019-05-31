@@ -58,24 +58,29 @@ class Router
 
 
 //Парсинг аргументов
-        if (current($parse_uri)){
-            $data = current($parse_uri);
+        $this->arguments['get'] = $_GET;
+        $this->arguments['post'] = $_POST;
 
-            $arguments = explode('&', $data);
 
-            foreach ($arguments as $argument){
-                $exparg = explode('=', $argument);
-                if (count($exparg) < 3 && next($exparg)){
-                    $this->arguments[$exparg[0]] = $exparg[1];
-                }
-            }
+//        if (current($parse_uri)){
+//            $data = current($parse_uri);
+//
+//            $arguments = explode('&', $data);
+//
+//            foreach ($arguments as $argument){
+//                $exparg = explode('=', $argument);
+//                if (count($exparg) < 3 && next($exparg)){
+//                    $this->arguments[$exparg[0]] = $exparg[1];
+//                }
+//            }
+//
+//            array_shift($parse_uri);
+//        }
+//
+//        if (current($parse_uri)){
+//            $this->otherArguments = $parse_uri;
+//        }
 
-            array_shift($parse_uri);
-        }
-
-        if (current($parse_uri)){
-            $this->otherArguments = $parse_uri;
-        }
 
     }
 
@@ -84,7 +89,8 @@ class Router
     {
         $this->controller = App::$app->getConfig()->getWebConfig()['default']['controller'];
         $this->action = App::$app->getConfig()->getWebConfig()['default']['action'];;
-        $this->arguments = [];
+        $this->arguments['get'] = [];
+        $this->arguments['post'] = [];
         $this->otherArguments = [];
     }
 
@@ -115,9 +121,16 @@ class Router
     /**
      * @return mixed
      */
-    public function getParams()
+    public function getParams($type = null)
     {
-        return $this->arguments;
+        switch ($type){
+            case 'get': return $this->arguments['get'];
+            break;
+            case 'post': return $this->arguments['post'];
+            break;
+            default: return $this->arguments;
+        }
+
     }
 
     /**

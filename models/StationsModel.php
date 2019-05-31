@@ -44,7 +44,7 @@ class StationsModel extends MainModel
 
     }
 
-    public function getSimilar($page, $per_page){
+    public function getSimilar($id, $page, $per_page){
         return file_get_contents($this->storagePath. '/' .'similar_stations.txt');
     }
 
@@ -79,7 +79,7 @@ class StationsModel extends MainModel
         return isset($res[0]) ? json_encode($res[0]) : json_encode(null);
     }
 
-    public function getSongHistory($id){
+    public function getSongHistory($id, $page, $per_page){
         $data = file_get_contents($this->storagePath. '/' . 'song_history.txt');
 
         $data = json_decode($data);
@@ -89,7 +89,7 @@ class StationsModel extends MainModel
         return json_encode($data);
     }
 
-    public function getSearch($query){
+    public function getSearch($query, $page, $per_page){
 
         $query = $this->validateString($query);
 
