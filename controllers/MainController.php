@@ -16,6 +16,12 @@ use app\Controller;
 class MainController extends Controller
 {
 
+    public function __construct()
+    {
+        parent::__construct();
+        header('Access-Control-Allow-Origin: *');
+    }
+
     //return true/false
     public function validateToken()
     {
