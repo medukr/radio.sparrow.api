@@ -13,6 +13,14 @@ use model\StationsModel;
 class StationsController extends MainController
 {
 
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->validateToken();
+
+    }
+
     //Загрузка всех странций
     public function indexAction(){
         $stations  = $this->getModel();

@@ -16,15 +16,6 @@ use app\Controller;
 class MainController extends Controller
 {
 
-    public function __construct()
-    {
-        parent::__construct();
-
-        $this->validateToken();
-
-    }
-
-
     //return true/false
     public function validateToken()
     {

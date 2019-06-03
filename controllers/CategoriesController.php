@@ -12,6 +12,15 @@ use model\CategoriesModel;
 
 class CategoriesController extends MainController
 {
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->validateToken();
+
+    }
+
     public function getModel(){
         return new CategoriesModel();
     }
