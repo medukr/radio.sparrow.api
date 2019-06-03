@@ -37,15 +37,16 @@ class CategoriesController extends MainController
 
     public function stationsAction($id){
 
+
         $categories = $this->getModel();
 
         $categoryId = $this->validateInt($id);
 
-        $page = isset($this->params['page'])
-            ? $this->validateInt($this->params['page'])
+        $page = isset($this->params['get']['page'])
+            ? $this->validateInt($this->params['get']['page'])
             : 1;
-        $per_page = isset($this->params['per_page'])
-            ? $this->validateInt($this->params['per_page'])
+        $per_page = isset($this->params['get']['per_page'])
+            ? $this->validateInt($this->params['get']['per_page'])
             : 20;
 
         $result = $categories->getCategoryStations($categoryId, $page, $per_page);

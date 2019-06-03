@@ -7,7 +7,6 @@
 
 namespace app;
 
-
 use app\exception\AppSparrowException;
 use app\exception\DevSparrowException;
 use app\exception\HttpSparrowException;
@@ -22,8 +21,6 @@ class View
 
     public function __construct(string $path_name)
     {
-        ob_start();
-
         $this->views_path = App::$app->getRouter()->getRootDir() . DIRECTORY_SEPARATOR . 'views';
 
         $this->controller_views_path_name = $path_name;
@@ -34,6 +31,9 @@ class View
 
     }
 
+    public static function obStart(...$arg){
+        return ob_start(...$arg);
+    }
 
     public function getViewPath()
     {

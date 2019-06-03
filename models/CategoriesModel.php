@@ -7,42 +7,42 @@
 
 namespace model;
 
-
-
+//API http://api.dirble.com/v2 не отвечает, этот класс нужно будет доработать, как только API заработает
 class CategoriesModel extends MainModel
 {
 
     private $_base = 'categories';
 
-    public function getAll(){
-        return file_get_contents($this->storagePath. '/' .'all_categories.txt');
+    public function getAll()
+    {
+        return file_get_contents($this->storagePath. DIRECTORY_SEPARATOR . self::ALL_CATEGORIES);
     }
 
 
-    public function getPrimary(){
-        return file_get_contents($this->storagePath. '/' .'primary_categories.txt');
+    public function getPrimary()
+    {
+        return file_get_contents($this->storagePath. DIRECTORY_SEPARATOR . self::PRIMARY_CATEGORIES);
     }
 
-    public function getCategoryStations($id, $page = 1, $per_page = 20){
-
+    public function getCategoryStations($id, $page = 1, $per_page = 20)
+    {
         switch ($id) {
-            case 5: $fileName = 'pop_stations.txt';
+            case 5: $fileName = self::POP_STATIONS;
             break;
-            case 4: $fileName = 'speech_stations.txt';
+            case 4: $fileName = self::SPEECH_STATIONS;
             break;
-            case 3: $fileName = 'dance_stations.txt';
+            case 3: $fileName = self::DANCE_STATIONS;
             break;
-            case 14: $fileName = 'electronic_stations.txt';
+            case 14: $fileName = self::ELECTRONIC_STATIONS;
             break;
-            case 40: $fileName = 'decades_stations.txt';
+            case 40: $fileName = self::DECADES_STATIONS;
             break;
             default: $fileName = false;
         }
 
-
         if ($fileName !== false) {
 
-            $content = json_decode(file_get_contents($this->storagePath. '/' . $fileName));
+            $content = json_decode(file_get_contents($this->storagePath. DIRECTORY_SEPARATOR . $fileName));
 
             $data = array_slice($content, 0, $per_page);
 
@@ -50,7 +50,7 @@ class CategoriesModel extends MainModel
 
         } else {
 
-            $data = file_get_contents($this->storagePath. '/' . 'recent.txt');
+            $data = file_get_contents($this->storagePath. DIRECTORY_SEPARATOR . self::RECENT_STATIONS);
 
             $arr_data = json_decode($data);
 

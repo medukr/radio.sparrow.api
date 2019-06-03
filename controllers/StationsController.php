@@ -17,11 +17,11 @@ class StationsController extends MainController
     public function indexAction(){
         $stations  = $this->getModel();
 
-        $page = isset($this->params['page'])
-            ? $this->validateInt($this->params['page'])
+        $page = isset($this->params['get']['page'])
+            ? $this->validateInt($this->params['get']['page'])
             : 1;
-        $per_page = isset($this->params['per_page'])
-            ? $this->validateInt($this->params['per_page'])
+        $per_page = isset($this->params['get']['per_page'])
+            ? $this->validateInt($this->params['get']['per_page'])
             : 20;
 
         $result = $stations->getStations($page, $per_page);
@@ -33,11 +33,11 @@ class StationsController extends MainController
     public function popularAction(){
         $stations = $this->getModel();
 
-        $page = isset($this->params['page'])
-            ? $this->validateInt($this->params['page'])
+        $page = isset($this->params['get']['page'])
+            ? $this->validateInt($this->params['get']['page'])
             : 1;
-        $per_page = isset($this->params['per_page'])
-            ? $this->validateInt($this->params['per_page'])
+        $per_page = isset($this->params['get']['per_page'])
+            ? $this->validateInt($this->params['get']['per_page'])
             : 20;
 
         $result =  $stations->getPopular($page, $per_page);
@@ -50,11 +50,11 @@ class StationsController extends MainController
         $stations = $this->getModel();
 
         $id = $this->validateInt($id);
-        $page = isset($this->params['page'])
-            ? $this->validateInt($this->params['page'])
+        $page = isset($this->params['get']['page'])
+            ? $this->validateInt($this->params['get']['page'])
             : 1;
-        $per_page = isset($this->params['per_page'])
-            ? $this->validateInt($this->params['per_page'])
+        $per_page = isset($this->params['get']['per_page'])
+            ? $this->validateInt($this->params['get']['per_page'])
             : 20;
 
         $result =  $stations->getSimilar($id, $page, $per_page);
@@ -68,11 +68,11 @@ class StationsController extends MainController
 
         $stations = $this->getModel();
 
-        $page = isset($this->params['page'])
-            ? $this->validateInt($this->params['page'])
+        $page = isset($this->params['get']['page'])
+            ? $this->validateInt($this->params['get']['page'])
             : 1;
-        $per_page = isset($this->params['per_page'])
-            ? $this->validateInt($this->params['per_page'])
+        $per_page = isset($this->params['get']['per_page'])
+            ? $this->validateInt($this->params['get']['per_page'])
             : 20;
 
         $result =  $stations->getRecent($page, $per_page);
@@ -97,11 +97,11 @@ class StationsController extends MainController
         $stations = $this->getModel();
 
         $id = $this->validateInt($id);
-        $page = isset($this->params['page'])
-            ? $this->validateInt($this->params['page'])
+        $page = isset($this->params['get']['page'])
+            ? $this->validateInt($this->params['get']['page'])
             : 1;
-        $per_page = isset($this->params['per_page'])
-            ? $this->validateInt($this->params['per_page'])
+        $per_page = isset($this->params['get']['per_page'])
+            ? $this->validateInt($this->params['get']['per_page'])
             : 20;
 
         $result = $stations->getSongHistory($id, $page, $per_page);
@@ -111,14 +111,15 @@ class StationsController extends MainController
     }
 
     public function searchAction($query){
+
         $stations = $this->getModel();
 
         $query = $this->validateData($query);
-        $page = isset($this->params['page'])
-            ? $this->validateInt($this->params['page'])
+        $page = isset($this->params['get']['page'])
+            ? $this->validateInt($this->params['get']['page'])
             : 1;
-        $per_page = isset($this->params['per_page'])
-            ? $this->validateInt($this->params['per_page'])
+        $per_page = isset($this->params['get']['per_page'])
+            ? $this->validateInt($this->params['get']['per_page'])
             : 20;
 
         $result = $stations->getSearch($query, $page, $per_page);

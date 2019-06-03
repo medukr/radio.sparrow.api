@@ -68,10 +68,12 @@ class App
                         return $filteredParams['true'][$item];
                     }, $requiredParams);
 
+                    View::obStart();
+
                     self::$app->controller->$action(...$arr);
 //                    die;
                 } else {
-                    throw new HttpSparrowException('Invalid '. join(', ', $filteredParams['false']).' parameter(s)', 404);
+                    throw new HttpSparrowException('Invalid \''. join('\', \'', $filteredParams['false']).'\' parameter(s)', 404);
                 }
             }else {
                 throw new AppSparrowException('Method ' . $controller_class .'\\' . $action . '()' . ' is Not Found',404);
@@ -119,11 +121,5 @@ class App
     public function getController(){
         return $this->controller;
     }
-
-
-
-
-
-
 
 }

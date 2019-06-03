@@ -7,15 +7,15 @@
 
 namespace model;
 
-
-
 use http\Exception\BadUrlException;
 
+//API http://api.dirble.com/v2 не отвечает, этот класс нужно будет доработать, как только API заработает
 class StationsModel extends MainModel
 {
     private $_base = 'stations';
 
-    public function getPopular($page, $per_page){
+    public function getPopular($page, $per_page)
+    {
         /*
         if ( разница во времени с последней загрузки больше установленной){
             // 1.загружай обновленную инфу
@@ -28,29 +28,50 @@ class StationsModel extends MainModel
         */
         //Так вот а страницы как проверять?
 
-//        debug($this->service);
+//        if ((time() - fileatime($this->storagePath . DIRECTORY_SEPARATOR . self::POPULAR_STATIONS)) > (int)$this->service['stations']['timeOutTimer']) {
 //
-//        $request = $this->_base .  '/popular';
+//            $request = $this->_base . '/popular?' . http_build_query(compact('page', 'per_page'));
+//            $result = $this->getResponse($request);
 //
-//        return $this->getResponse($request, $page, $per_page);
+//            file_put_contents($this->storagePath . DIRECTORY_SEPARATOR . self::POPULAR_STATIONS, $result);
+//
+//            return $result;
+//        } else {
 
-        return file_get_contents($this->storagePath. '/' .'popular.txt');
+        return file_get_contents($this->storagePath . DIRECTORY_SEPARATOR . self::POPULAR_STATIONS);
+//    }
     }
 
     public function getStations($page, $per_page){
-//        $request = $this->_base;
-//        return $this->getResponse($request, $page, $per_page);
-        return file_get_contents($this->storagePath. '/' .'stations.txt');
+
+//        $request = $this->_base . '?' . http_build_query(compact('page', 'per_page'));
+//        $result = $this->getResponse($request);
+
+        return file_get_contents($this->storagePath. DIRECTORY_SEPARATOR . self::ALL_STATIONS);
 
     }
 
     public function getSimilar($id, $page, $per_page){
-        return file_get_contents($this->storagePath. '/' .'similar_stations.txt');
+
+//        if ((time() - fileatime($this->storagePath . DIRECTORY_SEPARATOR . self::SIMILAR_STATIONS)) > (int)$this->service['stations']['timeOutTimer']) {
+//
+//            $request = $this->_base . '/similar?' . http_build_query(compact('id', 'page', 'per_page'));
+//            $result = $this->getResponse($request);
+//
+//            file_put_contents($this->storagePath . DIRECTORY_SEPARATOR . self::SIMILAR_STATIONS, $result);
+//
+//            return $result;
+//        } else {
+
+            return file_get_contents($this->storagePath . DIRECTORY_SEPARATOR . self::SIMILAR_STATIONS);
+
+//        }
+
     }
 
     public function getRecent($page, $per_page = 20){
 
-        $content = json_decode(file_get_contents($this->storagePath. '/' .'recent.txt'));
+        $content = json_decode(file_get_contents($this->storagePath. DIRECTORY_SEPARATOR . self::RECENT_STATIONS));
 
         $data = array_slice($content, 0, $per_page);
 
@@ -58,16 +79,16 @@ class StationsModel extends MainModel
     }
 
     public function getSpecific($id){
+        //Это все дальше будет не актуально, когда api dirble.com снова заработет, нужн будет переписать
 
-        $data = file_get_contents($this->storagePath. '/' . 'recent.txt');
-
+        $data = file_get_contents($this->storagePath. DIRECTORY_SEPARATOR . self::RECENT_STATIONS);
         $arr_data = json_decode($data);
         $res = array_filter($arr_data, function ($el, $key) use ($id){
             return $el->id == $id;
         },ARRAY_FILTER_USE_BOTH);
 
         if (empty($res)){
-            $data = file_get_contents($this->storagePath. '/' . 'popular.txt');
+            $data = file_get_contents($this->storagePath. DIRECTORY_SEPARATOR . self::POPULAR_STATIONS);
             $arr_data = json_decode($data);
             $res = array_filter($arr_data, function ($el, $key) use ($id){
                 return $el->id == $id;
@@ -76,11 +97,11 @@ class StationsModel extends MainModel
 
         $res = array_values($res);
 
-        return isset($res[0]) ? json_encode($res[0]) : json_encode(null);
+        return isset($res[0]) ? json_encode($res[0]) : json_encode([]);
     }
 
     public function getSongHistory($id, $page, $per_page){
-        $data = file_get_contents($this->storagePath. '/' . 'song_history.txt');
+        $data = file_get_contents($this->storagePath. DIRECTORY_SEPARATOR . self::SONG_HISTORY);
 
         $data = json_decode($data);
 
@@ -95,7 +116,7 @@ class StationsModel extends MainModel
 
         if ($query) {
             //Сейчас просто заглушка
-            $data =  file_get_contents($this->storagePath. '/' . 'popular.txt');
+            $data =  file_get_contents($this->storagePath. DIRECTORY_SEPARATOR . self::POPULAR_STATIONS);
 
             $data = json_decode($data);
 
