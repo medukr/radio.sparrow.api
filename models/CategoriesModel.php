@@ -37,6 +37,10 @@ class CategoriesModel extends MainModel
             break;
             case 40: $fileName = self::DECADES_STATIONS;
             break;
+            case -2: $fileName = self::POPULAR_STATIONS;
+            break;
+            case -1: $fileName = self::RECENT_STATIONS;
+            break;
             default: $fileName = false;
         }
 

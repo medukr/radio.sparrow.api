@@ -81,23 +81,50 @@ class StationsModel extends MainModel
     public function getSpecific($id){
         //Это все дальше будет не актуально, когда api dirble.com снова заработет, нужн будет переписать
 
-        $data = file_get_contents($this->storagePath. DIRECTORY_SEPARATOR . self::RECENT_STATIONS);
-        $arr_data = json_decode($data);
-        $res = array_filter($arr_data, function ($el, $key) use ($id){
-            return $el->id == $id;
-        },ARRAY_FILTER_USE_BOTH);
-
-        if (empty($res)){
-            $data = file_get_contents($this->storagePath. DIRECTORY_SEPARATOR . self::POPULAR_STATIONS);
-            $arr_data = json_decode($data);
-            $res = array_filter($arr_data, function ($el, $key) use ($id){
-                return $el->id == $id;
-            },ARRAY_FILTER_USE_BOTH);
-        }
+        $res = $this->getStationFromCache($id);
 
         $res = array_values($res);
 
         return isset($res[0]) ? json_encode($res[0]) : json_encode([]);
+    }
+
+
+
+    function getStationFromCache($id){
+
+        $arr = [
+            self::POPULAR_STATIONS,
+            self::RECENT_STATIONS,
+            self::SIMILAR_STATIONS,
+            self::DECADES_STATIONS,
+            self::SPEECH_STATIONS,
+            self::POP_STATIONS,
+            self::ELECTRONIC_STATIONS,
+            self::DANCE_STATIONS
+        ];
+
+        $result = [];
+
+        foreach ($arr as $item) {
+            $res = $this->searchStationInCache($item, $id);
+            if (!empty($res)) $result = $res;
+        }
+
+        return $result;
+
+    }
+
+    public function searchStationInCache($file_name, $id){
+
+        $data = file_get_contents($this->storagePath. DIRECTORY_SEPARATOR . $file_name);
+
+        $arr_data = json_decode($data);
+
+        $res = array_filter($arr_data, function ($el, $key) use ($id){
+            return $el->id == $id;
+        },ARRAY_FILTER_USE_BOTH);
+
+        return $res;
     }
 
     public function getSongHistory($id, $page, $per_page){
