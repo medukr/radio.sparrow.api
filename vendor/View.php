@@ -54,7 +54,7 @@ class View
         $this->layout_name = $name;
     }
 
-    public function render(string $view_file_name,array $params)
+    public function render(string $view_file_name,array $params = [])
     {
         foreach ($params as $key => $param){
             $$key = $param;

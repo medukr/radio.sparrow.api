@@ -33,7 +33,7 @@ class Controller
         $this->layout_name = 'main';
     }
 
-    public function render(string $view, array $params)
+    public function render(string $view, array $params = [])
     {
 
         $this->view->setLayout($this->layout);

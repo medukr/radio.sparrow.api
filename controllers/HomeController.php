@@ -18,7 +18,7 @@ class HomeController extends Controller
     //  '/home'
     //  '/home/index'
     //такое поведение из-за установленных по-умолчанию контроллера и экшна
-    function indexAction(){
+    public function indexAction(){
        $message =  'Hello, this is RadioSparrow API';
 
        $this->render('index', compact('message'));
@@ -26,10 +26,9 @@ class HomeController extends Controller
 
     //Этот метод вызвется только по урл '/home/countries'
     //по урл '/countries' произойдет попытка вызвать соответсвующий контроллер и установленный по-умолчанию экшн
-    function countriesAction(){
+    public function countriesAction(){
         $message =  'Hello, this is countriesAction()';
 
         $this->render('index', compact('message'));
     }
-
 }

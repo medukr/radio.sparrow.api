@@ -7,3 +7,6 @@ db/storage/**
 
 #log files
 logs/**
+
+#template for home/index page
+2-blocks-template-master/
