@@ -1,3 +1,7 @@
+<?php
+$url = 'get.sparrow.in.ua';
+$title = 'Radio.Sparrow.API';
+?>
 <!doctype html>
 <html lang="en" class="no-js">
 <head>
@@ -9,9 +13,10 @@
     <link rel="stylesheet" href="/css/reset.css"> <!-- CSS reset -->
     <link rel="stylesheet" href="/css/style.css"> <!-- Resource style -->
     <script src="/js/modernizr.js"></script> <!-- Modernizr -->
+    <title><?= $title ?></title>
 </head>
 <body>
-<title>Radio.Sparrow.API</title>
+
 <main>
     <div class="cd-image-block">
         <ul class="cd-images-list">
@@ -48,7 +53,7 @@
                     <h2>Usegade</h2>
 
                     <p style="font-weight: bold">
-                        Curl: http://get.radio.sparrow.in.ua/{tag}/{action}?{get_params}&{pagination}&token=[your_token]
+                        Curl: http://<?= $url ?>/{tag}/{action}?{get_params}&{pagination}&token=[your_token]
                     </p>
 
                     <p style="font-weight: bold">
@@ -80,14 +85,14 @@
 
                     <p>
                         <span style="font-weight: bold">Curl:</span>
-                        http://get.radio.sparrow.in.ua/categories/{action}?{get_params}&token=[your_token]
+                        http://<?= $url ?>/categories/{action}?{get_params}&token=[your_token]
                     </p>
 
 
                     <h3><span style="font-weight: bold">All</span> categories:</h3>
                     <p>
                         <span style="font-weight: bold">Curl:</span>
-                        http://get.radio.sparrow.in.ua/categories?token=[your_token]
+                        http://<?= $url ?>/categories?token=[your_token]
                     </p>
                     <p>
                         <span style="font-weight: bold">Response:</span>
@@ -98,7 +103,7 @@
                     <h3><span style="font-weight: bold">Primary</span> categories:</h3>
                     <p>
                         <span style="font-weight: bold">Curl:</span>
-                        http://get.radio.sparrow.in.ua/categories/primary?token=[your_token]
+                        http://<?= $url ?>/categories/primary?token=[your_token]
                     </p>
                     <p>
                         <span style="font-weight: bold">Response:</span>
@@ -109,7 +114,7 @@
                     <h3>Stations from category <span style="font-weight: bold">id</span>:</h3>
                     <p>
                         <span style="font-weight: bold">Curl:</span>
-                        http://get.radio.sparrow.in.ua/categories/stations?id={category_id}&token=[your_token]
+                        http://<?= $url ?>/categories/stations?id={category_id}&token=[your_token]
                     </p>
                     <p>
                         <span style="font-weight: bold">Response:</span>
@@ -124,14 +129,14 @@
 
                     <p>
                         <span style="font-weight: bold">Curl:</span>
-                        http://get.radio.sparrow.in.ua/countries?token=[your_token]
+                        http://<?= $url ?>/countries?token=[your_token]
                     </p>
 
 
                     <h3><span style="font-weight: bold">All</span> countries:</h3>
                     <p>
                         <span style="font-weight: bold">Curl:</span>
-                        http://get.radio.sparrow.in.ua/countries?token=[your_token]
+                        http://<?= $url ?>/countries?token=[your_token]
                     </p>
                     <p>
                         <span style="font-weight: bold">Response:</span>
@@ -161,14 +166,14 @@
 
                     <p>
                         <span style="font-weight: bold">Curl:</span>
-                        http://get.radio.sparrow.in.ua/stations/{action}?{get_params}&token=[your_token]
+                        http://<?= $url ?>/stations/{action}?{get_params}&token=[your_token]
                     </p>
 
 
                     <h3><span style="font-weight: bold">All</span> stations:</h3>
                     <p>
                         <span style="font-weight: bold">Curl:</span>
-                        http://get.radio.sparrow.in.ua/stations?token=[your_token]
+                        http://<?= $url ?>/stations?token=[your_token]
                     </p>
                     <p>
                         <span style="font-weight: bold">Response:</span>
@@ -179,7 +184,7 @@
                     <h3><span style="font-weight: bold">Popular</span> stations:</h3>
                     <p>
                         <span style="font-weight: bold">Curl:</span>
-                        http://get.radio.sparrow.in.ua/categories/popular?token=[your_token]
+                        http://<?= $url ?>/categories/popular?token=[your_token]
                     </p>
                     <p>
                         <span style="font-weight: bold">Response:</span>
@@ -190,7 +195,7 @@
                     <h3><span style="font-weight: bold">Similar</span> stations:</h3>
                     <p>
                         <span style="font-weight: bold">Curl:</span>
-                        http://get.radio.sparrow.in.ua/categories/similar?id={station_id}&token=[your_token]
+                        http://<?= $url ?>/categories/similar?id={station_id}&token=[your_token]
                     </p>
                     <p>
                         <span style="font-weight: bold">Response:</span>
@@ -201,7 +206,7 @@
                     <h3><span style="font-weight: bold">Recent</span> stations:</h3>
                     <p>
                         <span style="font-weight: bold">Curl:</span>
-                        http://get.radio.sparrow.in.ua/categories/recent?token=[your_token]
+                        http://<?= $url ?>/categories/recent?token=[your_token]
                     </p>
                     <p>
                         <span style="font-weight: bold">Response:</span>
@@ -212,7 +217,7 @@
                     <h3><span style="font-weight: bold">Specific</span> stations:</h3>
                     <p>
                         <span style="font-weight: bold">Curl:</span>
-                        http://get.radio.sparrow.in.ua/categories/specific?id={station_id}&token=[your_token]
+                        http://<?= $url ?>/categories/specific?id={station_id}&token=[your_token]
                     </p>
                     <p>
                         <span style="font-weight: bold">Response:</span>
@@ -223,7 +228,7 @@
                     <h3><span style="font-weight: bold">Song history</span></h3>
                     <p>
                         <span style="font-weight: bold">Curl:</span>
-                        http://get.radio.sparrow.in.ua/categories/song_history?id={station_id}&token=[your_token]
+                        http://<?= $url ?>/categories/song_history?id={station_id}&token=[your_token]
                     </p>
                     <p>
                         <span style="font-weight: bold">Response:</span>
@@ -234,7 +239,7 @@
                     <h3><span style="font-weight: bold">Search</span> stations</h3>
                     <p>
                         <span style="font-weight: bold">Curl:</span>
-                        http://get.radio.sparrow.in.ua/categories/song_history?seqarch={query}&token=[your_token]
+                        http://<?= $url ?>/categories/song_history?seqarch={query}&token=[your_token]
                     </p>
                     <p>
                         <span style="font-weight: bold">Response:</span>
