@@ -21,7 +21,7 @@ class Router
 
     public function __construct($uri)
     {
-        $this->root_dir = dirname(__FILE__, 2);
+        $this->root_dir = dirname(__FILE__, 3);
         $this->uri = strtolower(urldecode(trim($uri, '/')));
     }
 

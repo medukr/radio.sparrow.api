@@ -1,0 +1,20 @@
+{
+    "name": "andrii/radio_api",
+    "description": "training project",
+    "require": {
+        "php": "^7.0"
+    },
+    "authors": [
+        {
+            "name": "medukr",
+            "email": "andrii.demydyuk@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "app\\": "vendor/base",
+            "controller\\": "controllers",
+            "model\\": "models"
+        }
+    }
+}

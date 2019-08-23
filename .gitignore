@@ -13,3 +13,8 @@ logs/**
 
 
 json.js
+
+#Composer
+composer.lock
+/vendor/
+!/vendor/base
